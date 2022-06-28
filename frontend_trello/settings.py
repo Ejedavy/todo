@@ -71,8 +71,7 @@ ROOT_URLCONF = 'frontend_trello.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,7 +153,6 @@ REST_KNOX = {
     'AUTO_REFRESH': True,
 }
 
-
 # SWAGGER SETTINGS
 SWAGGER_SETTINGS = {
     'SECURITY_DEFINITIONS': {
@@ -163,6 +161,22 @@ SWAGGER_SETTINGS = {
             'in': 'header',
             'name': 'Authorization'
 
+        }
+    },
+}
+
+# CUSTOM USER SETTINGS
+AUTH_USER_MODEL = 'userauth.MyUser'
+
+
+# SETTING UP THE CACHE
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+        'TIMEOUT': 2592000,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
     },
 }
