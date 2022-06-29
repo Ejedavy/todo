@@ -24,10 +24,10 @@ class Board(models.Model):
         return f"Board-{self.name}"
 
     def clean(self):
-        board_names = [board.name.lower() for board in self.created_by.boards.all()]
+        board_names = [board.name.lower() for board in self.created_by.boards.all() if self.id != board.id]
         if self.name.lower() in board_names:
             raise ValidationError(
-                {'name': f"{self.created_by} already has a board named {self.name}"})
+                {'name': f"{self.created_by.nickname} already has a board named {self.name}"})
 
     def save(self, *args, **kwargs):
         self.full_clean()

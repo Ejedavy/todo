@@ -7,19 +7,17 @@ def view_priorities(request):
     pass
 
 
-@api_view(['GET'])
+@api_view(['GET','POST','PUT','DELETE'])
 @permission_classes([IsAuthenticated])
-def view_priority(request, priorityID):
-    pass
+def priority(request, priorityID):
+    if request.method == 'GET':
+        pass
+    elif request.method == 'POST':
+        pass
+    elif request.method == 'PUT':
+        pass
+    elif request.method == 'DELETE':
+        pass
+    else:
+        return Response({'message': 'Invalid request method'}, 400)
 
-
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def edit_priority(request, priorityID):
-    pass
-
-
-@api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
-def delete_priority(request, priorityID):
-    pass

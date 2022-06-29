@@ -7,19 +7,16 @@ def view_lists(request):
     pass
 
 
-@api_view(['GET'])
+@api_view(['GET','PUT', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def view_list(request, listID):
-    pass
-
-
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def edit_list(request, listID):
-    pass
-
-
-@api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
-def delete_list(request, listID):
-    pass
+def list_(request, listID):
+    if request.method == 'GET':
+        pass
+    elif request.method == 'POST':
+        pass
+    elif request.method == 'PUT':
+        pass
+    elif request.method =='DELETE':
+        pass
+    else:
+        return Response({'message':'Invalid request method'}, 400)

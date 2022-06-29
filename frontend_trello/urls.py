@@ -44,9 +44,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('userauth.urls')),
     path('user/', include('user.urls')),
-    path('board/', include('board.urls')),
-    path('list/', include('list.urls')),
-    path('item/', include('item.urls')),
-    path('schedule/', include('schedule.urls')),
+    path('boards/', include('board.urls')),
+    path('lists/', include('list.urls')),
+    path('items/', include('item.urls')),
+    path('schedules/', include('schedule.urls')),
     path('priorities/', include('priorities.urls')),
 ]

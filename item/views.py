@@ -7,19 +7,22 @@ def view_items(request):
     pass
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PUT', 'DELETE', 'POST'])
 @permission_classes([IsAuthenticated])
-def view_item(request, itemID):
-    pass
+def item(request, itemID):
+    if request.method == 'GET':
+        pass
+    elif request.method == 'POST':
+        pass
+    elif request.method == 'PUT':
+        pass
+    elif request.method == 'DELETE':
+        pass
+    else:
+        return Response({'message': 'Invalid request method'}, 400)
 
 
-@api_view(['PUT'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def edit_item(request, itemID):
-    pass
-
-
-@api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
-def delete_item(request, itemID):
+def item_create(request):
     pass

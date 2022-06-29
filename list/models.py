@@ -25,7 +25,7 @@ class List(models.Model):
         return f"List-{self.name}"
 
     def clean(self):
-        list_names = [single_list.name.lower() for single_list in self.board.lists.all()]
+        list_names = [single_list.name.lower() for single_list in self.board.lists.all() if self.id != single_list.id]
         if self.name.lower() in list_names:
             raise ValidationError(
                 {'name': f"A list named {self.name} already exits in Board-{self.board.name}"})

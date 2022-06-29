@@ -30,7 +30,7 @@ class Item(models.Model):
         return f"Item-{self.name}"
 
     def clean(self):
-        item_names = [item.name.lower() for item in self.list.items.all()]
+        item_names = [item.name.lower() for item in self.list.items.all() if self.id != item.id]
         if self.name.lower() in item_names:
             raise ValidationError(
                 {'name': f"An item named {self.name} already exits in list {self.list.name}"})

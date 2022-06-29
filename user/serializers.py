@@ -11,5 +11,6 @@ class UserSerializer(serializers.ModelSerializer):
             'is_active': {'read_only': True},
             'is_superuser': {'read_only': True},
             "groups": {'read_only': True},
-            "user_permissions": {'read_only': True}
+            "user_permissions": {'read_only': True},
+            "last_login": {'read_only': True}
         }
