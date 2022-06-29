@@ -20,13 +20,14 @@ def get_bot_link(request):
 def logIn(request):
     serialized = LoginSerializer(data=request.data)
     if serialized.is_valid(raise_exception=True):
-        user = MyUser.objects.filter(email=serialized.validated_data.get("email"))
+        user = MyUser.objects.filter(email=serialized.data.get("email"))
         if not user.exists():
             return Response({"message": "Sign up instead"}, 400)
         else:
-            user = authenticate(email=serialized.data.get("email"), password=serialized.data.get("password"))
+            user = authenticate(request, password=serialized.data.get("password"),
+                                username=serialized.data.get("email"))
             if user is None:
-                return Response({"message": "Incorrect Credentials"}, status=404)
+                return Response({"message": "Incorrect Credentials"}, status=400)
             else:
                 token = AuthToken.objects.create(user=user)[1]
                 login(request, user)

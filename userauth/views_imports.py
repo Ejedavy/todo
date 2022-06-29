@@ -7,8 +7,7 @@ from .serializers import *
 from django.conf import settings
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
-from django.contrib.auth import authenticate
-from django.contrib.auth import login
+from django.contrib.auth import login,authenticate
 from knox.models import AuthToken
 from confirmation_token import token_generator
 import uuid
