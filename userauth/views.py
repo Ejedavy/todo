@@ -20,18 +20,20 @@ def get_bot_link(request):
 def logIn(request):
     serialized = LoginSerializer(data=request.data)
     if serialized.is_valid(raise_exception=True):
-        print(serialized.data.get("email"))
-        print(serialized.data.get("password"))
-        user = authenticate(email=serialized.data.get("email"), password=serialized.data.get("password"))
-        if user is None:
-            return Response({"message": "User does not exist"}, status=404)
+        user = MyUser.objects.filter(email=serialized.validated_data.get("email"))
+        if not user.exists():
+            return Response({"message": "Sign up instead"}, 400)
         else:
-            token = AuthToken.objects.create(user=user)[1]
-            login(request, user)
-            return Response({
-                "email": user.email,
-                "token": token,
-            }, status=200)
+            user = authenticate(email=serialized.data.get("email"), password=serialized.data.get("password"))
+            if user is None:
+                return Response({"message": "Incorrect Credentials"}, status=404)
+            else:
+                token = AuthToken.objects.create(user=user)[1]
+                login(request, user)
+                return Response({
+                    "email": user.email,
+                    "token": token,
+                }, status=200)
 
 
 @swagger_auto_schema(methods=["post"],
