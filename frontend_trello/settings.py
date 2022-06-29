@@ -168,7 +168,6 @@ SWAGGER_SETTINGS = {
 # CUSTOM USER SETTINGS
 AUTH_USER_MODEL = 'userauth.MyUser'
 
-
 # SETTING UP THE CACHE
 CACHES = {
     "default": {
@@ -180,3 +179,8 @@ CACHES = {
         }
     },
 }
+
+# BOT SETTINGS
+BOT_TOKEN = "5433238053:AAFiO1viOtq5URnvh-1byyOK32-4cRiX2iM"
+BOT_TEST_ID = 730122886
+BOT_LINK = "https://t.me/inno_frontend_bot"

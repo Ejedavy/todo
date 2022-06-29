@@ -1,10 +1,13 @@
 from .views_imports import *
 
 
+@swagger_auto_schema(methods=["get"],
+                     responses={200: UserSerializer()})
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def view_user_profile(request):
-    pass
+    serialized = UserSerializer(instance=request.user)
+    return Response(serialized.data)
 
 
 @api_view(['PUT'])

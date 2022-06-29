@@ -1,0 +1,9 @@
+frontend_trello/settings.py
+db.sqlite3
+board/migrations
+userauth/migrations
+user/migrations
+schedule/migrations
+priorities/migrations
+list/migrations
+item/migrations
